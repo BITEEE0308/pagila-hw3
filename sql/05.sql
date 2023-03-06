@@ -6,3 +6,5 @@
  * HINT:
  * This can be solved with a self join on the film_actor table.
  */
+
+SELECT DISTINCT title FROM film JOIN film_actor USING (film_id) WHERE actor_id IN (SELECT actor_id FROM film_actor JOIN film USING (film_id) WHERE title = 'AMERICAN CIRCUS') GROUP BY title HAVING count(actor_id) >= 2 ORDER BY title;
